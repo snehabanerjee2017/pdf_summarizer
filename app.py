@@ -1,5 +1,8 @@
 import streamlit as st
-import os
+from dotenv import load_dotenv
+from utils import summarizer
+
+load_dotenv()
 
 def main():
 
@@ -12,6 +15,12 @@ def main():
     pdf_file = st.file_uploader("Upload a PDF file", type="pdf")
 
     submit = st.button("Summarize")
+
+    if submit:
+        response = summarizer(pdf_file)
+
+        st.subheader("Summary of File:")
+        st.write(response)
 
 
 if __name__ == "__main__":
